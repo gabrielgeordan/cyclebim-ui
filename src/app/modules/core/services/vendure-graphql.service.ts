@@ -3,6 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 export interface GraphqlResponse<T> {
   readonly data: T;
@@ -12,7 +13,7 @@ export interface GraphqlResponse<T> {
 @Injectable({ providedIn: 'root' })
 export class VendureGraphqlService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000/shop-api';
+  private readonly apiUrl = environment.apiUrl;
 
   query<T, V = Record<string, unknown>>(
     query: string,
