@@ -1,0 +1,45 @@
+<article class="detail-container">
+  <div class="glass-panel main-info">
+    <h2 class="product-title">{{ product.name }}</h2>
+    <p class="product-desc">{{ product.description }}</p>
+    <div class="base-price">Preço Base: R$ {{ (product.basePrice / 100).toFixed(2) }}</div>
+  </div>
+
+  @switch (product.type) {
+    @case (productTypeEnum.RENTAL) {
+      @if (asRentalProduct(); as rental) {
+        <app-rental-calendar
+          [specification]="rental.rentalSpecification"
+          (selectionChange)="onRentalSelect($event)"
+        ></app-rental-calendar>
+      }
+    }
+    @case (productTypeEnum.SERVICE) {
+      @if (product.type === productTypeEnum.SERVICE) {
+        <app-service-scheduler
+          [slots]="product.availableScheduleSlots"
+          (slotSelect)="onServiceSlotSelect($event)"
+        ></app-service-scheduler>
+      }
+    }
+    @case (productTypeEnum.SURPLUS_STOCK) {
+      @if (asSurplusProduct(); as surplus) {
+        <app-surplus-geo-validator
+          [constraint]="surplus.geolocation"
+          (validationChange)="onGeoValidationChange($event)"
+        ></app-surplus-geo-validator>
+      }
+    }
+  }
+
+  <div class="actions-panel">
+    <button
+      class="btn-add-cart"
+      [disabled]="cartFacade.isLoading()"
+      (click)="addToCart()"
+      type="button"
+    >
+      {{ cartFacade.isLoading() ? 'Adicionando ao Carrinho...' : 'Adicionar ao Carrinho Beta' }}
+    </button>
+  </div>
+</article>

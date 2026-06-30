@@ -1,0 +1,23 @@
+<div class="glass-panel card" (click)="onSelect()">
+  <div class="card-header">
+    <span class="badge" [class]="product.type.toLowerCase()">
+      {{ getBadgeText() }}
+    </span>
+  </div>
+  @if (product.assets.length > 0) {
+    <div class="card-image">
+      <img [src]="product.assets[0].preview" [alt]="product.name" loading="lazy" />
+    </div>
+  }
+  <div class="card-body">
+    <h3 class="title">{{ product.name }}</h3>
+    <p class="description">{{ product.description }}</p>
+    <div class="meta">
+      <span class="extra">{{ getExtraInfo() }}</span>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="price">{{ getPriceLabel() }}</div>
+    <button class="btn-action" type="button">Ver Detalhes</button>
+  </div>
+</div>

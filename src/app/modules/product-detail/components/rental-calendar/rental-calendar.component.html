@@ -1,0 +1,53 @@
+<div class="glass-panel rental-box">
+  <h4 class="box-title">Configurar Período de Locação</h4>
+
+  <div class="dates-row">
+    <div class="field">
+      <label for="start-date">Data de Retirada / Início:</label>
+      <input
+        id="start-date"
+        type="date"
+        [value]="startDate()"
+        (change)="onStartDateChange($event)"
+      />
+    </div>
+    <div class="field">
+      <label for="end-date">Data de Devolução / Fim:</label>
+      <input
+        id="end-date"
+        type="date"
+        [value]="endDate()"
+        (change)="onEndDateChange($event)"
+      />
+    </div>
+  </div>
+
+  @if (daysCount() > 0) {
+    <div class="calculation-summary">
+      <div class="row">
+        <span>Período selecionado:</span>
+        <strong>{{ daysCount() }} dias</strong>
+      </div>
+      <div class="row">
+        <span>Diária unitária:</span>
+        <span>R$ {{ (specification.dailyRate / 100).toFixed(2) }}</span>
+      </div>
+      @if (specification.securityDepositAmount) {
+        <div class="row">
+          <span>Caução de garantia:</span>
+          <span>R$ {{ (specification.securityDepositAmount / 100).toFixed(2) }}</span>
+        </div>
+      }
+      <div class="row total">
+        <span>Total Estimado:</span>
+        <strong>R$ {{ (estimatedTotal() / 100).toFixed(2) }}</strong>
+      </div>
+    </div>
+  }
+
+  @if (!isValid() && daysCount() > 0) {
+    <div class="alert warning">
+      O período de locação deve ser entre {{ specification.minRentalDays }} e {{ specification.maxRentalDays }} dias.
+    </div>
+  }
+</div>

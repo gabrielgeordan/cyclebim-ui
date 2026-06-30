@@ -1,0 +1,20 @@
+<div class="glass-panel scheduler-box">
+  <h4 class="box-title">Agendar Horário de Instalação / Mão de Obra</h4>
+  <p class="subtitle">Selecione uma janela disponível na agenda técnica:</p>
+
+  <div class="slots-grid">
+    @for (slot of slots; track $index) {
+      <button
+        class="slot-btn"
+        [class.selected]="selectedSlotIndex() === $index"
+        (click)="selectSlot(slot, $index)"
+        type="button"
+      >
+        <span class="day">{{ getDayName(slot.dayOfWeek) }}</span>
+        <span class="time">{{ slot.startHour }} - {{ slot.endHour }}</span>
+      </button>
+    } @empty {
+      <div class="empty">Nenhuma janela disponível para agendamento.</div>
+    }
+  </div>
+</div>

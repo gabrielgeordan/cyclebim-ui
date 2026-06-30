@@ -1,0 +1,62 @@
+<section class="catalog-hero">
+  <h1 class="hero-title">Marketplace da Construção Civil</h1>
+  <p class="hero-subtitle">
+    Locação de maquinário, serviços especializados e sobras de obra geolocalizadas em um único fluxo polimórfico.
+  </p>
+
+  <div class="filter-bar">
+    <button
+      class="filter-btn"
+      [class.active]="facade.selectedTypeFilter() === null"
+      (click)="filterByType(null)"
+      type="button"
+    >
+      Todos
+    </button>
+    <button
+      class="filter-btn"
+      [class.active]="facade.selectedTypeFilter() === productTypeEnum.RENTAL"
+      (click)="filterByType(productTypeEnum.RENTAL)"
+      type="button"
+    >
+      Locação de Maquinário
+    </button>
+    <button
+      class="filter-btn"
+      [class.active]="facade.selectedTypeFilter() === productTypeEnum.SERVICE"
+      (click)="filterByType(productTypeEnum.SERVICE)"
+      type="button"
+    >
+      Mão de Obra / Serviços
+    </button>
+    <button
+      class="filter-btn"
+      [class.active]="facade.selectedTypeFilter() === productTypeEnum.SURPLUS_STOCK"
+      (click)="filterByType(productTypeEnum.SURPLUS_STOCK)"
+      type="button"
+    >
+      Sobras de Obra
+    </button>
+  </div>
+</section>
+
+@if (facade.isLoading()) {
+  <div class="loading-state">Carregando catálogo Beta...</div>
+} @else {
+  <section class="products-grid">
+    @for (product of facade.products(); track product.id) {
+      @defer (on viewport) {
+        <app-product-card
+          [product]="product"
+          (selectProduct)="onSelectProduct($event)"
+        ></app-product-card>
+      } @placeholder {
+        <div class="glass-panel skeleton-card"></div>
+      }
+    } @empty {
+      <div class="empty-state">
+        Nenhum item polimórfico encontrado nesta categoria.
+      </div>
+    }
+  </section>
+}

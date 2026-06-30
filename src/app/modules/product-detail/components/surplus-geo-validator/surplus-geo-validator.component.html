@@ -1,0 +1,35 @@
+<div class="glass-panel geo-box">
+  <h4 class="box-title">Validação Logística de Sobras de Obra</h4>
+  <p class="subtitle">
+    Este lote está em <strong>{{ constraint.originCity }} - {{ constraint.originState }}</strong>.
+    O frete só é viável para obras num raio de até <strong>{{ constraint.maxShippingRadiusKm }} km</strong>.
+  </p>
+
+  <div class="simulation-actions">
+    <button
+      class="sim-btn viable"
+      (click)="simulateGeolocation(constraint.latitude + 0.1, constraint.longitude + 0.1)"
+      type="button"
+    >
+      Simular Obra Próxima (Viável)
+    </button>
+    <button
+      class="sim-btn inviable"
+      (click)="simulateGeolocation(constraint.latitude + 2.0, constraint.longitude + 2.0)"
+      type="button"
+    >
+      Simular Obra Distante (Inviável)
+    </button>
+  </div>
+
+  @if (calculatedDistanceKm() !== null) {
+    <div class="result-badge" [class.success]="isViable()" [class.error]="!isViable()">
+      <span>Distância calculada: <strong>{{ calculatedDistanceKm() }} km</strong></span>
+      @if (isViable()) {
+        <span>✅ Frete viável para sua obra!</span>
+      } @else {
+        <span>❌ Fora do raio logístico viável.</span>
+      }
+    </div>
+  }
+</div>

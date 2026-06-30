@@ -1,0 +1,76 @@
+.geo-box {
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+
+  .box-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-amber);
+    margin-bottom: 0.35rem;
+  }
+
+  .subtitle {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+
+    strong {
+      color: #fff;
+    }
+  }
+
+  .simulation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+
+    .sim-btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.viable {
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid var(--accent-emerald);
+        color: var(--accent-emerald);
+
+        &:hover { background: rgba(16, 185, 129, 0.3); }
+      }
+
+      &.inviable {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid #ef4444;
+        color: #ef4444;
+
+        &:hover { background: rgba(239, 68, 68, 0.3); }
+      }
+    }
+  }
+
+  .result-badge {
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+
+    &.success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--accent-emerald);
+      color: #fff;
+    }
+
+    &.error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #ef4444;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+.rental-box {
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+
+  .box-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--accent-blue);
+  }
+
+  .dates-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .field {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.35rem;
+      }
+
+      input[type="date"] {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: #fff;
+        padding: 0.6rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+
+        &:focus {
+          border-color: var(--accent-blue);
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .calculation-summary {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+
+      &.total {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border-color);
+        font-size: 1.1rem;
+        color: #fff;
+
+        strong {
+          color: var(--accent-amber);
+        }
+      }
+    }
+  }
+
+  .alert.warning {
+    margin-top: 1rem;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid var(--accent-amber);
+    color: var(--accent-amber);
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+}
